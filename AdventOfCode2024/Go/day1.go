@@ -2,20 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"sort"
 	"strconv"
 	"strings"
 )
 
-func abs(x int) int {
-    if x < 0 {
-        return -x
-    }
-    return x
-}
-
-func part1(lines []string) {
+func day1_part1(lines []string) {
     var A, B []int
     
     for _, line := range lines {
@@ -31,12 +25,12 @@ func part1(lines []string) {
 
     res := 0
 	for i := 0; i < len(A); i++ {
-		res+=abs(A[i]-B[i])
+		res+=int(math.Abs(float64(A[i]-B[i])))
 	}
 	fmt.Print(res)
 }
 
-func part2(lines []string) {
+func day1_part2(lines []string) {
     var A, B []int
     
     for _, line := range lines {
@@ -65,7 +59,7 @@ func Day1() {
 	lines := strings.Split(string(data), "\n")
 
 	fmt.Println("Part 1:")
-	part1(lines)
+	day1_part1(lines)
 	fmt.Println("\nPart 2:")
-	part2(lines)
+	day1_part2(lines)
 }
