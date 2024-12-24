@@ -81,18 +81,94 @@ bool valid(ll A,int ind,vector<ll> & inst){
     return true;
 }
 
-int helper(ll A,int i,vector<ll> & inst){
-    if(i==-1) return A;
-    ll ans=0;
+bool helper(ll A,int i,vector<ll> & inst){
+    if(i==-1) {
+        cout<<A<<endl;
+        return true;
+    }
     for(int j=0;j<8;j++){
         ll temp=(A*8)+j;
         if(valid(temp,i,inst)){
-            ans+=helper(temp,i-1,inst);
+            if(helper(temp,i-1,inst)) return true;
         }
     }
-    return ans;
+    return false;
 }
 
+// A
+// int main(){
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     vector<string> lines;
+//     fstream ss("input.txt");
+//     ofstream sso("output.txt");
+//     string line;
+//     while(getline(ss,line)){
+//         lines.push_back(line);
+//     }
+//     ll A=stoi(lines[0].substr(lines[0].find(": ")+2));
+//     ll B=stoi(lines[1].substr(lines[1].find(": ")+2));
+//     ll C=stoi(lines[2].substr(lines[2].find(": ")+2));
+//     string program=lines[4].substr(lines[4].find(": ")+2);
+//     vector<ll> inst;
+//     stringstream ss2(program);
+//     string num;
+//     while(getline(ss2,num,',')){
+//         inst.push_back(stoi(num));
+//     }
+//     ll i=0;
+//     ll n=inst.size();
+//     while(i<n){
+//         ll temp=inst[i+1];
+//         ll op;
+//         if(temp<=3) op=temp;
+//         else if(temp==4) op=A;
+//         else if(temp==5) op=B;
+//         else if(temp==6) op=C;
+//         switch (inst[i])
+//         {
+//         case 0:
+//             A=A/(pow(2,op));
+//             i+=2;
+//             break;
+//         case 1:
+//             B=B^temp;
+//             i+=2;
+//             break;
+//         case 2:
+//             B=op%8;
+//             i+=2;
+//             break;
+//         case 3:
+//             if(A!=0){
+//                 i=temp;
+//             }
+//             else i+=2;
+//             break;
+//         case 4:
+//             B=B^C;
+//             i+=2;
+//             break;
+//         case 5:
+//             cout<<op%8<<",";
+//             i+=2;
+//             break;
+//         case 6:
+//             B=A/(pow(2,op));
+//             i+=2;
+//             break;
+//         case 7:
+//             C=A/(pow(2,op));
+//             i+=2;
+//             break;
+//         default:
+//             break;
+//         }
+//     }
+//     return 0;
+// }
+
+// B
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -114,6 +190,6 @@ int main(){
         inst.push_back(stoi(num));
     }
     ll n=inst.size();
-    ll res=helper(0,n-1,inst);
+    helper(0,n-1,inst);
     return 0;
 }
