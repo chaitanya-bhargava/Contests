@@ -166,7 +166,6 @@ func day16_helper(x int,y int,dir int,cost int,path [][]int,sf map[string]bool,d
     if dist[newx][newy]!=math.MaxInt && dist[newx][newy]==dist[x][y]+1001 {
         path = append(path, []int{newx,newy})
         day16_helper(newx,newy,((dir-1)%4+4)%4,cost,path,sf,dist);
-        path = path[:len(path)-1]
     }
 }
 
